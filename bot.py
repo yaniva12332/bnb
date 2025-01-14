@@ -16,7 +16,7 @@ from ta.trend import SMAIndicator, MACD
 # =======================
 # הגדרות ראשוניות
 # =======================
-‏TELEGRAM_TOKEN = '7808322309:AAFNGvGcI8Gk_PGmDMmtLcCbZhVuahHgiZI'
+TELEGRAM_TOKEN = "7808322309:AAFNGvGcI8Gk_PGmDMmtLcCbZhVuahHgiZI"
 bsc = "https://bsc-dataseed.binance.org/"
 web3 = Web3(Web3.HTTPProvider(bsc))
 pair_address = web3.to_checksum_address('0x18B2A687610328590Bc8F2e5fEdDe3b582A49cdA')
