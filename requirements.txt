@@ -1,4 +1,11 @@
-web3
+asyncio
+requests
 python-telegram-bot
+web3
 numpy
+pandas
 scikit-learn
+xgboost
+lightgbm
+tensorflow
+ta
