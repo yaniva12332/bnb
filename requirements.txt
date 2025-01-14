@@ -1,7 +1,8 @@
-python-telegram-bot==20.0a6
-web3
+python-telegram-bot==20.3
+web3==5.28.0
 numpy
 pandas
 scikit-learn
 xgboost
 tensorflow
+ta
