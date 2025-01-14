@@ -19,7 +19,7 @@ from ta.volatility import BollingerBands
 # =======================
 # הגדרות ראשוניות
 # =======================
-TELEGRAM_TOKEN = "YOUR_TELEGRAM_TOKEN"
+TELEGRAM_TOKEN = "7808322309:AAFNGvGcI8Gk_PGmDMmtLcCbZhVuahHgiZI"
 bsc = "https://bsc-dataseed.binance.org/"
 web3 = Web3(Web3.HTTPProvider(bsc))
 prediction_address = web3.to_checksum_address('0x0eD7e52944161450477ee417DE9Cd3a859b14fD0')
