@@ -1,6 +1,9 @@
+python-telegram-bot==20.3
 web3==5.31.1
-python-telegram-bot==20.0
+yfinance==0.2.18
+numpy==1.24.2
 pandas==1.5.3
-numpy==1.23.5
 scikit-learn==1.2.2
-asyncio==3.4.3
+xgboost==1.7.5
+tensorflow==2.10.0
+ta==0.10.2
