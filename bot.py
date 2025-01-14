@@ -25,6 +25,30 @@ web3 = Web3(Web3.HTTPProvider(bsc))
 prediction_address = web3.to_checksum_address('0x0eD7e52944161450477ee417DE9Cd3a859b14fD0')
 
 # =======================
+# ABI של החוזה החכם
+# =======================
+abi = [
+    {"inputs":[],"payable":False,"stateMutability":"nonpayable","type":"constructor"},
+    {"anonymous":False,"inputs":[{"indexed":True,"internalType":"address","name":"owner","type":"address"},{"indexed":True,"internalType":"address","name":"spender","type":"address"},{"indexed":False,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},
+    {"anonymous":False,"inputs":[{"indexed":True,"internalType":"address","name":"sender","type":"address"},{"indexed":False,"internalType":"uint256","name":"amount0","type":"uint256"},{"indexed":False,"internalType":"uint256","name":"amount1","type":"uint256"},{"indexed":True,"internalType":"address","name":"to","type":"address"}],"name":"Burn","type":"event"},
+    {"constant":True,"inputs":[],"name":"DOMAIN_SEPARATOR","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"payable":False,"stateMutability":"view","type":"function"},
+    {"constant":True,"inputs":[],"name":"MINIMUM_LIQUIDITY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":False,"stateMutability":"view","type":"function"},
+    {"constant":True,"inputs":[],"name":"PERMIT_TYPEHASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"payable":False,"stateMutability":"view","type":"function"},
+    {"constant":True,"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":False,"stateMutability":"view","type":"function"},
+    {"constant":False,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":False,"stateMutability":"nonpayable","type":"function"},
+    {"constant":True,"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":False,"stateMutability":"view","type":"function"},
+    {"constant":False,"inputs":[{"internalType":"address","name":"to","type":"address"}],"name":"burn","outputs":[{"internalType":"uint256","name":"amount0","type":"uint256"},{"internalType":"uint256","name":"amount1","type":"uint256"}],"payable":False,"stateMutability":"nonpayable","type":"function"},
+    {"constant":True,"inputs":[],"name":"getReserves","outputs":[{"internalType":"uint112","name":"_reserve0","type":"uint112"},{"internalType":"uint112","name":"_reserve1","type":"uint112"},{"internalType":"uint32","name":"_blockTimestampLast","type":"uint32"}],"payable":False,"stateMutability":"view","type":"function"},
+    {"constant":False,"inputs":[{"internalType":"uint256","name":"amount0Out","type":"uint256"},{"internalType":"uint256","name":"amount1Out","type":"uint256"},{"internalType":"address","name":"to","type":"address"},{"internalType":"bytes","name":"data","type":"bytes"}],"name":"swap","outputs":[],"payable":False,"stateMutability":"nonpayable","type":"function"},
+    {"constant":True,"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":False,"stateMutability":"view","type":"function"}
+]
+
+# =======================
+# חיבור לחוזה החכם
+# =======================
+prediction_contract = web3.eth.contract(address=prediction_address, abi=abi)
+
+# =======================
 # משיכת מחירים בזמן אמת
 # =======================
 def get_crypto_prices():
@@ -135,16 +159,20 @@ def advanced_prediction(stacked_model, lstm_model, scaler):
 # =======================
 # הפעלת בוט טלגרם
 # =======================
-async def predict(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    stacked_model, lstm_model, scaler = train_advanced_models()
-    prediction = advanced_prediction(stacked_model, lstm_model, scaler)
-    await update.message.reply_text(f"התחזית לסיבוב הבא: {prediction}")
-
 async def start_bot():
-    app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
+    app = ApplicationBuilder().token(TELEGRAM_TOKEN).build>
     app.add_handler(CommandHandler("predict", predict))
     print("✅ Bot is running!")
-    await app.run_polling()
+
+    await app.initialize()
+    await app.start()
+    await app.updater.start_polling()
 
 if __name__ == "__main__":
-    asyncio.run(start_bot())
+    import asyncio
+
+    try:
+        asyncio.run(start_bot())
+    except (KeyboardInterrupt, SystemExit):
+        print("⛔️ Bot stopped.")
+
