@@ -8,3 +8,4 @@ requests
 ta
 xgboost
 lightgbm
+yfinance
