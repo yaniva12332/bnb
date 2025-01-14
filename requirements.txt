@@ -1,8 +1,6 @@
-python-telegram-bot==20.3
-web3==5.28.0
-numpy
-pandas
-scikit-learn
-xgboost
-tensorflow
-ta
+web3==5.31.1
+python-telegram-bot==20.0
+pandas==1.5.3
+numpy==1.23.5
+scikit-learn==1.2.2
+asyncio==3.4.3
