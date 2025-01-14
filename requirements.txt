@@ -1,11 +1,7 @@
-python-telegram-bot
-pandas
-numpy
-scikit-learn
-tensorflow
+python-telegram-bot==20.0a6
 web3
-requests
-ta
+numpy
+pandas
+scikit-learn
 xgboost
-lightgbm
-yfinance
+tensorflow
