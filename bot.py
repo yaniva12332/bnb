@@ -14,7 +14,7 @@ bsc = "https://bsc-dataseed.binance.org/"
 web3 = Web3(Web3.HTTPProvider(bsc))
 
 # כתובת חוזה Prediction של PancakeSwap
-prediction_address = web3.toChecksumAddress('0x0eD7e52944161450477ee417DE9Cd3a859b14fD0')
+prediction_address = web3.to_checksum_address('0x0eD7e52944161450477ee417DE9Cd3a859b14fD0')
 
 # ABI של חוזה PancakeSwap Prediction
 prediction_abi = [
