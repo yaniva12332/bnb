@@ -1,0 +1,10 @@
+python-telegram-bot
+pandas
+numpy
+scikit-learn
+tensorflow
+web3
+requests
+ta
+xgboost
+lightgbm
